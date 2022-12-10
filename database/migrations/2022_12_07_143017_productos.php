@@ -18,16 +18,19 @@ class Productos extends Migration
             $table->bigIncrements('id');
 
             $table->bigInteger('marca_id')->unsigned();
+            $table->bigInteger('number_part_id')->unsigned();
 
             $table->string('name');
             $table->string('upc');
             $table->string('current_cost');
             $table->string('profit_percentage');
+            $table->string('price');
             $table->string('enable');
 
             $table->timestamps();
 
             $table->foreign('marca_id')->references('id')->on('productos')->onDelete('cascade');
+            $table->foreign('number_part_id')->references('id')->on('productos')->onDelete('cascade');
         });
     }
 

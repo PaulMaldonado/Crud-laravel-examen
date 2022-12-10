@@ -41,7 +41,10 @@
 										<th>Upc</th>
 										<th>Costo actual</th>
 										<th>Porcentaje de beneficio</th>
+                                        <th>Precio</th>
+                                        <th>Ganacia</th>
 										<th>Habilitado</th>
+                                        <th>SKU</th>
 
                                         <th>Acciones</th>
                                     </tr>
@@ -55,8 +58,17 @@
 											<td>{{ $producto->name }}</td>
 											<td>{{ $producto->upc }}</td>
 											<td>{{ number_format($producto->current_cost, 2) }}</td>
-											<td>{{ $producto->profit_percentage."%" }}</td>
+											<td>{{ "0".$producto->profit_percentage."%" }}</td>
+                                            <td>{{ number_format($producto->price, 2) }}</td>
+                                            <td>{{ number_format($producto->formulaCostoActualPorcentaje(), 2) }}</td>
 											<td>{{ $producto->enable }}</td>
+                                            <td>
+                                                @if(count($producto->numberParts) > 0) 
+                                                    <span class="badge bg-success">{{ $producto->numberPart->sku }}</span>
+                                                @else
+                                                    <span class="badge bg-dark">No hay aún sku asignado</span>
+                                                @endif
+                                            </td>
 
                                             <td>
                                                 <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">

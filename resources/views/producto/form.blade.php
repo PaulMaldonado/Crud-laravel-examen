@@ -7,6 +7,12 @@
         </div>
 
         <div class="form-group mt-3">
+            {{ Form::label('Seleccionar sku') }}
+            {{ Form::select('number_part_id', $numberPart, $producto->number_part_id, ['class' => 'form-control' . ($errors->has('number_part_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar sku']) }}
+            {!! $errors->first('number_part_id', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+        <div class="form-group mt-3">
             {{ Form::label('Nombre del producto') }}
             {{ Form::text('name', $producto->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Nombre del producto']) }}
             {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
@@ -28,6 +34,12 @@
             {{ Form::label('profit_percentage') }}
             {{ Form::text('profit_percentage', $producto->profit_percentage, ['class' => 'form-control' . ($errors->has('profit_percentage') ? ' is-invalid' : ''), 'placeholder' => 'Profit Percentage']) }}
             {!! $errors->first('profit_percentage', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+        <div class="form-group mt-3">
+            {{ Form::label('precio') }}
+            {{ Form::text('price', $producto->price, ['class' => 'form-control' . ($errors->has('price') ? ' is-invalid' : ''), 'placeholder' => 'Precio']) }}
+            {!! $errors->first('price', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="form-group mt-3">

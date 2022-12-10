@@ -41,6 +41,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('marcas.index') }}">{{ ('Marcas') }}</a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('number-parts.index') }}">{{ ('Sku') }}</a>
+                            </li>
                         @endif
                     </ul>
 

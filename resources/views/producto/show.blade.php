@@ -29,10 +29,24 @@
                             <p class="card-text text-muted text-dark fw-bold">Costo actual: {{ number_format($producto->current_cost, 2) }}</p>
                         </div>
                         <div class="form-group">
-                            <p class="card-text text-dark fw-bold text-dark">Porcentaje de beneficio: {{ $producto->profit_percentage."%" }}</p>
+                            <p class="card-text text-dark fw-bold text-dark">Porcentaje de beneficio: {{ "0".$producto->profit_percentage."%" }}</p>
+                        </div>
+                        <div class="form-group">
+                            <p class="card-text text-dark fw-bold text-dark">Precio: {{ $producto->price }}</p>
                         </div>
                         <div class="form-group">
                             <strong>Habilitado: <span class="badge bg-success"> {{ $producto->enable }}</span></strong>
+                        </div>
+                        <div class="form-group">
+                            <strong>SKU: 
+                                @if(count($producto->numberParts) > 0)
+                                    <span class="badge bg-success">
+                                        {{ $producto->numberPart->sku }}
+                                    </span>
+                                @else 
+                                    <span class="badge bg-dark">Aún no hay sku asignado</span>
+                                @endif
+                            </strong>
                         </div>
 
                     </div>

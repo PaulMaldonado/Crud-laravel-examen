@@ -22,5 +22,6 @@ Auth::routes();
 
 Route::resource('productos', App\Http\Controllers\ProductoController::class)->middleware('auth');
 Route::resource('marcas', App\Http\Controllers\MarcaController::class)->middleware('auth');
+Route::resource('number-parts', App\Http\Controllers\NumberPartController::class)->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

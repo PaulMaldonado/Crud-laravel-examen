@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use App\Models\Marca;
+use App\Models\NumberPart;
 use Illuminate\Http\Request; 
 
 class ProductoController extends Controller
@@ -12,6 +13,9 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::paginate();
+
+        $producto = Producto::leftJoin('number_parts', 'productos.id', '=', 'number_parts.id')->get();
+        dd($producto);
 
         return view('producto.index', compact('productos'))
         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
@@ -22,8 +26,9 @@ class ProductoController extends Controller
     {
         $producto = new Producto();
         $marcas = Marca::pluck('name', 'id');
+        $numberPart = NumberPart::pluck('sku', 'id');
 
-        return view('producto.create', compact('producto', 'marcas'));
+        return view('producto.create', compact('producto', 'marcas', 'numberPart'));
     }
 
     // Método para guardar el producto
@@ -42,6 +47,7 @@ class ProductoController extends Controller
     {
         $producto = Producto::find($id);
 
+
         return view('producto.show', compact('producto'));
     }
 
@@ -50,8 +56,9 @@ class ProductoController extends Controller
     {
         $producto = Producto::find($id);
         $marcas = Marca::pluck('name', 'id');
+        $numberPart = NumberPart::pluck('sku', 'id');
 
-        return view('producto.edit', compact('producto', 'marcas'));
+        return view('producto.edit', compact('producto', 'marcas', 'numberPart'));
     }
 
     // Método para actualizar un producto por id
